@@ -52,13 +52,15 @@ class NearbyAsteroids extends Component {
     setAsteroidsConst = (daysAsteroids) =>{
         // eslint-disable-next-line
         this.state.asteroids = daysAsteroids;
-        this.changeDatas(daysAsteroids)
+        this.changeDatas()
     }
 
-    changeDatas = (daysAsteroids) =>{
-        console.log(daysAsteroids)
-        let daysCount = daysAsteroids.filter(x => x !== "").lenght;
-        console.log(daysCount)
+    changeDatas = () => {
+        const daysCount = this.state.asteroids;
+        const arraysNoObjeto = Object.values(daysCount).filter(item => Array.isArray(item));
+        // eslint-disable-next-line
+        this.state.days = arraysNoObjeto.length;
+        console.log(this.state.days);
 
     }
 
@@ -118,9 +120,10 @@ render() {
         <p>Máximo 7 dias de diferença</p>
         </div>
     </div>
-    <div className="container">
+    <div className="containerData">
         <h6>Dias selecionados</h6>
-        <label value={this.state.days}></label>
+        <label>{this.state.days}</label>
+        
     </div>
     </div>
 	)
