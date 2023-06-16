@@ -10,13 +10,13 @@ render() {
 	return (
 		<Navbar bg="dark" expand="lg" variant="dark">
             <Container>
-            <Navbar.Brand href="/index">NASA APIs</Navbar.Brand>
+            <Navbar.Brand href="/">NASA APIs</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <NavDropdown title="APIs" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/reserv">Cadastrar Nova Reserva</NavDropdown.Item>
+                    <NavDropdown.Item href="/nearbyAsteroids">Asteróides próximos da Terra</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Reservas agendadas</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
