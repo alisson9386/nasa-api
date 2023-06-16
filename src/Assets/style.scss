@@ -1,0 +1,28 @@
+.parent {
+    background-color: #212529;
+    color: white;
+    display: flex;
+    //justify-content: center;
+}
+
+.parent input, button{
+    margin-right: 10px;
+}
+
+
+
+.container{
+    display: inline-block;
+}
+.btn-primary {
+    margin-right: 10px;
+}
+
+.formAsteroids{
+    margin-left: 50px;
+}
+  
+
+.label-with-spacing {
+  margin-right: 10px;
+}
