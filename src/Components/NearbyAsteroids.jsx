@@ -1,6 +1,7 @@
 import { Component } from "react";
 import NasaServices from "../Services/NasaServices";
 import Swal from 'sweetalert2';
+import Badge from 'react-bootstrap/Badge';
 
 class NearbyAsteroids extends Component {
 
@@ -33,8 +34,10 @@ class NearbyAsteroids extends Component {
         this.state= {
             startDate: '',
             endDate: '',
-            asteroids:[],
+            asteroidsArray:[],
             days: 0,
+            countDays: 0,
+            asteroids: 0,
             countAsteroids: 0
         }
         this.changeStartDateHandler = this.changeStartDateHandler.bind(this);
@@ -52,15 +55,43 @@ class NearbyAsteroids extends Component {
     setAsteroidsConst = (daysAsteroids) =>{
         // eslint-disable-next-line
         this.state.asteroids = daysAsteroids;
-        this.changeDatas()
+        this.changeDays();
+        this.changeAsteroids();
     }
 
-    changeDatas = () => {
+    changeDays = () => {
         const daysCount = this.state.asteroids;
         const arraysNoObjeto = Object.values(daysCount).filter(item => Array.isArray(item));
-        // eslint-disable-next-line
-        this.state.days = arraysNoObjeto.length;
-        console.log(this.state.days);
+        this.setState({days: arraysNoObjeto.length, countDays: 0 });
+        const interval = setInterval(() => {
+            if (this.state.countDays === arraysNoObjeto.length) {
+              clearInterval(interval);
+            } else {
+              this.setState((prevState) => ({
+                countDays: prevState.countDays + 1
+              }));
+            }
+          }, 50);
+    }
+
+    changeAsteroids = () => {
+        const asteroidsCount = this.state.asteroids;
+        const arraysNoObjeto = Object.values(asteroidsCount).filter(item => Array.isArray(item));
+        var totalAsteroids = 0;
+        arraysNoObjeto.forEach((asteroids) => {
+            totalAsteroids += asteroids.length;
+        });
+        this.setState({asteroids: totalAsteroids, countAsteroids: 0});
+        const interval = setInterval(() => {
+            if (this.state.countAsteroids === totalAsteroids) {
+              clearInterval(interval);
+            } else {
+              this.setState((prevState) => ({
+                countAsteroids: prevState.countAsteroids + 1
+              }));
+            }
+          }, 5);
+        console.log(totalAsteroids)
 
     }
 
@@ -85,8 +116,13 @@ class NearbyAsteroids extends Component {
 
     handleClearFields = () => {
         this.setState({
-            startDate: "",
-            endDate: "",
+            startDate: '',
+            endDate: '',
+            asteroidsArray:[],
+            days: 0,
+            countDays: 0,
+            asteroids: 0,
+            countAsteroids: 0
         });
       }
 
@@ -121,8 +157,20 @@ render() {
         </div>
     </div>
     <div className="containerData">
-        <h6>Dias selecionados</h6>
-        <label>{this.state.days}</label>
+        <table className="table table-striped table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th><h6>Dias</h6></th>
+                                <th>Número de asteróides encontrados</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><Badge variant="primary">{this.state.countDays}</Badge></td>
+                                <td><Badge variant="primary">{this.state.countAsteroids}</Badge></td>
+                            </tr>
+                        </tbody>
+                    </table>
         
     </div>
     </div>
