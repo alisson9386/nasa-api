@@ -22,6 +22,7 @@ class NearbyAsteroids extends Component {
         Swal.fire({
                     icon: 'error',
 					title: 'Erro ao buscar asteroids!',
+                    text: "Busca permitida somente para até 7 dias de diferença",
                     showConfirmButton: false,
                     timerProgressBar: true,
                     timer: 3000 
@@ -91,7 +92,7 @@ class NearbyAsteroids extends Component {
               }));
             }
           }, 5);
-        console.log(totalAsteroids)
+        console.log(this.state)
 
     }
 
@@ -157,13 +158,32 @@ render() {
         </div>
     </div>
     <div className="containerData">
-        <div class="row">
-            <div class="col-sm-3">
+        <div className="row">
+            <div className="col-sm-4">
                 <h6>Dias</h6>
                 <label><Badge variant="primary">{this.state.countDays}</Badge></label>
             </div>
-            <div class="col-sm-3">
-                <h6>Número de asteróides encontrados</h6>
+            <div className="col-sm-4">
+                <h6>N° asteróides encontrados</h6>
+                <label><Badge variant="primary">{this.state.countAsteroids}</Badge></label>
+            </div>
+            <div className="col-sm-4">
+                <h6>N° asteróides encontrados</h6>
+                <label><Badge variant="primary">{this.state.countAsteroids}</Badge></label>
+            </div>
+        </div>
+        <br/><br/><br/><br/>
+        <div className="row">
+            <div className="col-sm-4">
+                <h6>Dias</h6>
+                <label><Badge variant="primary">{this.state.countDays}</Badge></label>
+            </div>
+            <div className="col-sm-4">
+                <h6>N° asteróides encontrados</h6>
+                <label><Badge variant="primary">{this.state.countAsteroids}</Badge></label>
+            </div>
+            <div className="col-sm-4">
+                <h6>N° asteróides encontrados</h6>
                 <label><Badge variant="primary">{this.state.countAsteroids}</Badge></label>
             </div>
         </div>
