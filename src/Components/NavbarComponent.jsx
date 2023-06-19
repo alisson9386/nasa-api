@@ -8,7 +8,7 @@ class NavbarComponent extends Component {
 
 render() {
 	return (
-		<Navbar bg="dark" expand="lg" variant="dark">
+		<Navbar bg="dark" expand="lg" variant="dark" className="fixed-top">
             <Container>
             <Navbar.Brand href="/">NASA APIs</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
