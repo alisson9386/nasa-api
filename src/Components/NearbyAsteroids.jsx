@@ -35,7 +35,7 @@ class NearbyAsteroids extends Component {
         this.state= {
             startDate: '',
             endDate: '',
-            asteroidsArray:[],
+            asteroidsForDayArray:[],
             days: 0,
             countDays: 0,
             asteroids: 0,
@@ -56,13 +56,15 @@ class NearbyAsteroids extends Component {
     setAsteroidsConst = (daysAsteroids) =>{
         // eslint-disable-next-line
         this.state.asteroids = daysAsteroids;
-        this.changeDays();
-        this.changeAsteroids();
+        const asteroidsCount = daysAsteroids;
+        const arraysNoObjeto = Object.values(asteroidsCount).filter(item => Array.isArray(item));
+        this.changeDays(arraysNoObjeto);
+        this.changeAsteroids(arraysNoObjeto);
+        this.changeTables(arraysNoObjeto);
+        console.log(this.state)
     }
 
-    changeDays = () => {
-        const daysCount = this.state.asteroids;
-        const arraysNoObjeto = Object.values(daysCount).filter(item => Array.isArray(item));
+    changeDays = (arraysNoObjeto) => {
         this.setState({days: arraysNoObjeto.length, countDays: 0 });
         const interval = setInterval(() => {
             if (this.state.countDays === arraysNoObjeto.length) {
@@ -75,9 +77,7 @@ class NearbyAsteroids extends Component {
           }, 50);
     }
 
-    changeAsteroids = () => {
-        const asteroidsCount = this.state.asteroids;
-        const arraysNoObjeto = Object.values(asteroidsCount).filter(item => Array.isArray(item));
+    changeAsteroids = (arraysNoObjeto) => {
         var totalAsteroids = 0;
         arraysNoObjeto.forEach((asteroids) => {
             totalAsteroids += asteroids.length;
@@ -94,13 +94,16 @@ class NearbyAsteroids extends Component {
           }, 5);
     }
 
+    changeTables = (arraysNoObjeto) => {
+
+    }
+
     handlerSubmit = () =>{
         this.showLoading('Buscando Asteroides');
         let startDate = this.state.startDate;
         let endDate = this.state.endDate;
 
         NasaServices.nearbyAsteroids(startDate, endDate).then((res) =>{
-            console.log(res.data)
             let daysAsteroids = res.data.near_earth_objects;
             this.setAsteroidsConst(daysAsteroids);
             Swal.close();
@@ -112,13 +115,11 @@ class NearbyAsteroids extends Component {
 
     }
 
-
-
     handleClearFields = () => {
         this.setState({
             startDate: '',
             endDate: '',
-            asteroidsArray:[],
+            asteroidsForDayArray:[],
             days: 0,
             countDays: 0,
             asteroids: 0,
@@ -158,15 +159,11 @@ render() {
     </div>
     <div className="containerData">
         <div className="row">
-            <div className="col-sm-4">
+            <div className="col-sm-5">
                 <h6>Dias</h6>
                 <label><Badge variant="primary">{this.state.countDays}</Badge></label>
             </div>
-            <div className="col-sm-4">
-                <h6>N° asteróides encontrados</h6>
-                <label><Badge variant="primary">{this.state.countAsteroids}</Badge></label>
-            </div>
-            <div className="col-sm-4">
+            <div className="col-sm-5">
                 <h6>N° asteróides encontrados</h6>
                 <label><Badge variant="primary">{this.state.countAsteroids}</Badge></label>
             </div>
@@ -176,12 +173,12 @@ render() {
                         <thead>
                             <tr>
                                 <th><h6>Dias</h6></th>
-                                <th>Número de asteróides encontrados</th>
+                                <th>N° asteróides encontrados</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><Badge variant="primary">{this.state.countDays}</Badge></td>
+                                <td><label>testes</label></td>
                                 <td><Badge variant="primary">{this.state.countAsteroids}</Badge></td>
                             </tr>
                         </tbody>
