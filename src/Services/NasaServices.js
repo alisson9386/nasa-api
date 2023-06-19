@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const USUARIO_API_BASE_URL = "https://api.nasa.gov/";
-const API_KEY = process.env.REACT_API_NASA;
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 class NasaServices{
 
