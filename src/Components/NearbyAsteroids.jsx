@@ -22,7 +22,7 @@ class NearbyAsteroids extends Component {
         Swal.fire({
                     icon: 'error',
 					title: 'Erro ao buscar asteroids!',
-                    text: "Busca permitida somente para até 7 dias de diferença",
+                    text: "Busca permitida somente para até 8 dias contando o dia inicial e final",
                     showConfirmButton: false,
                     timerProgressBar: true,
                     timer: 3000 
@@ -92,8 +92,6 @@ class NearbyAsteroids extends Component {
               }));
             }
           }, 5);
-        console.log(this.state)
-
     }
 
     handlerSubmit = () =>{
@@ -102,6 +100,7 @@ class NearbyAsteroids extends Component {
         let endDate = this.state.endDate;
 
         NasaServices.nearbyAsteroids(startDate, endDate).then((res) =>{
+            console.log(res.data)
             let daysAsteroids = res.data.near_earth_objects;
             this.setAsteroidsConst(daysAsteroids);
             Swal.close();
@@ -154,7 +153,7 @@ render() {
             </div>
             <br/>
         </form>
-        <p>Máximo 7 dias de diferença</p>
+        <p>Máximo 8 dias</p>
         </div>
     </div>
     <div className="containerData">
@@ -173,21 +172,20 @@ render() {
             </div>
         </div>
         <br/><br/><br/><br/>
-        <div className="row">
-            <div className="col-sm-4">
-                <h6>Dias</h6>
-                <label><Badge variant="primary">{this.state.countDays}</Badge></label>
-            </div>
-            <div className="col-sm-4">
-                <h6>N° asteróides encontrados</h6>
-                <label><Badge variant="primary">{this.state.countAsteroids}</Badge></label>
-            </div>
-            <div className="col-sm-4">
-                <h6>N° asteróides encontrados</h6>
-                <label><Badge variant="primary">{this.state.countAsteroids}</Badge></label>
-            </div>
-        </div>
-        
+        <table className="table table-striped table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th><h6>Dias</h6></th>
+                                <th>Número de asteróides encontrados</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><Badge variant="primary">{this.state.countDays}</Badge></td>
+                                <td><Badge variant="primary">{this.state.countAsteroids}</Badge></td>
+                            </tr>
+                        </tbody>
+                    </table>
     </div>
     </div>
 	)
