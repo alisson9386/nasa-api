@@ -9,6 +9,10 @@ class NasaServices{
         let urlNearbyAsteroids = USUARIO_API_BASE_URL + "neo/rest/v1/feed?start_date=" + startDate + "&end_date=" + endDate + "&api_key=" +  API_KEY;
         return axios.get(urlNearbyAsteroids);
     }
+
+    imageDay(){
+        return axios.get("https://api.nasa.gov/planetary/apod?api_key=" + API_KEY);
+    }
 }
 // eslint-disable-next-line import/no-anonymous-default-export
 export default new NasaServices()
