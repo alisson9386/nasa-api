@@ -158,8 +158,14 @@ render() {
     </div>
     <div className="containerData">
         <div class="row">
-            <div class="col-sm-6">seu objeto aqui</div>
-            <div class="col-sm-6">seu objeto aqui</div>
+            <div class="col-sm-3">
+                <h6>Dias</h6>
+                <label><Badge variant="primary">{this.state.countDays}</Badge></label>
+            </div>
+            <div class="col-sm-3">
+                <h6>Número de asteróides encontrados</h6>
+                <label><Badge variant="primary">{this.state.countAsteroids}</Badge></label>
+            </div>
         </div>
         
     </div>
