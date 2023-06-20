@@ -39,6 +39,7 @@ class NearbyAsteroids extends Component {
         this.state= {
             showModal: false,
             dataModal:{},
+            modalDate:'',
             startDate: '',
             endDate: '',
             asteroidsForDayArray:[],
@@ -64,6 +65,7 @@ class NearbyAsteroids extends Component {
     handleClose = () => {
         this.setState({showModal: false});
         this.setState({dataModal: {}});
+        this.setState({modalDate: ''});
     }
 
     //Abre o modal dos termos
@@ -77,6 +79,9 @@ class NearbyAsteroids extends Component {
         this.state.dataModal = asteroidsDay;
         Swal.close();
         this.setState({showModal: true});
+        // eslint-disable-next-line
+        this.state.modalDate = data;
+        console.log(this.state)
     }
 
     setAsteroidsConst = (daysAsteroids) =>{
@@ -87,7 +92,6 @@ class NearbyAsteroids extends Component {
         this.changeDays(arraysNoObjeto);
         this.changeAsteroids(arraysNoObjeto);
         this.changeTables();
-        console.log(this.state)
     }
 
     changeDays = (arraysNoObjeto) => {
@@ -151,6 +155,7 @@ class NearbyAsteroids extends Component {
         this.setState({
             showModal: false,
             dataModal:{},
+            modalDate:'',
             startDate: '',
             endDate: '',
             asteroidsForDayArray:[],
@@ -238,7 +243,7 @@ render() {
     <>
     <Modal className='modal modal-lg' show={this.state.showModal} onHide={this.handleClose}>
         <Modal.Header closeButton>
-            <Modal.Title>Dados do dia</Modal.Title>
+            <Modal.Title>Dados do dia {this.state.modalDate}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <table className="table table-striped table-bordered text-center">
@@ -263,7 +268,7 @@ render() {
                             ? parseFloat(data.close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2) + ' km/h'
                             : 'N/A'}</td>
                         <td>{data.close_approach_data && data.close_approach_data.length > 0
-                            ? parseFloat(data.close_approach_data[0].miss_distance.kilometers).toFixed(2) + ' km/h'
+                            ? parseFloat(data.close_approach_data[0].miss_distance.kilometers).toFixed(2) + ' Km'
                             : 'N/A'}</td>
                     </tr>
                 ))}
