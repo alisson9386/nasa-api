@@ -68,7 +68,13 @@
   
 .graphic{
     display: flex;
-    justify-content: ceter;
+    justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.carousel{
+    display: grid;
+    justify-content: center;
+    align-items: center;
 }

@@ -6,6 +6,7 @@ import Home from './Components/Home';
 import history from './history';
 import NavbarComponent from './Components/NavbarComponent';
 import NearbyAsteroids from './Components/NearbyAsteroids';
+import MarsRoverComponent from './Components/MarsRoverComponent';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
 					<Switch>
 						<Route path="/" exact component={Home}/>
 						<Route path="/nearbyAsteroids" component={NearbyAsteroids}/>
+						<Route path="/marsRover" component={MarsRoverComponent}/>
 					</Switch>
 			</Router>
   </div>

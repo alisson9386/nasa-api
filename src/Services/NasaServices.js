@@ -13,6 +13,12 @@ class NasaServices{
     imageDay(){
         return axios.get(BASE_URL + "planetary/apod?api_key=" + API_KEY);
     }
+
+    marsRover(date){
+        let urlMarsRover = BASE_URL + "mars-photos/api/v1/rovers/curiosity/photos?earth_date=" + date + "&api_key=" + API_KEY;
+        return axios.get(urlMarsRover);
+    }
+
 }
 // eslint-disable-next-line import/no-anonymous-default-export
 export default new NasaServices()

@@ -141,7 +141,7 @@ class NearbyAsteroids extends Component {
             this.setAsteroidsConst(daysAsteroids);
             Swal.close();
         }).catch(error => {
-            Swal.close(error);
+            Swal.close();
             this.showAlertErrorSearch();
           });
 
@@ -206,6 +206,24 @@ render() {
         </div><br/><br/>
         <div className="row">
             <div className="col-sm-6">
+                <table className="table table-striped table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th><h6>Dia</h6></th>
+                            <th>N° asteróides encontrados</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {Object.entries(this.state.countAsteroidsForDay).map(([data, count]) => (
+                        <tr key={data}>
+                            <td><Button onClick={() => this.handleShow(data)}>{data}</Button></td>
+                            <td><Badge variant="primary">{count}</Badge></td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className="col-sm-6">
             <BarChart width={600} height={400} data={Object.entries(this.state.countAsteroidsForDay)}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="0" />
@@ -215,24 +233,6 @@ render() {
                 <Bar dataKey="1" fill="#8884d8" name="Asteroides" />
             </BarChart>
             </div>
-        <div className="col-sm-6">
-            <table className="table table-striped table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th><h6>Dia</h6></th>
-                        <th>N° asteróides encontrados</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {Object.entries(this.state.countAsteroidsForDay).map(([data, count]) => (
-                    <tr key={data}>
-                        <td><Button onClick={() => this.handleShow(data)}>{data}</Button></td>
-                        <td><Badge variant="primary">{count}</Badge></td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-        </div>
         </div>
     </div>
     <>
@@ -248,6 +248,8 @@ render() {
                         <th>Magnitude absoluta</th>
                         <th>Diâmetro máximo estimado (em metros)</th>
                         <th>Potencialmente perigoso</th>
+                        <th>Velocidade relativa</th>
+                        <th>Distância em KM</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -257,6 +259,12 @@ render() {
                         <td>{data.absolute_magnitude_h} h</td>
                         <td>{data.estimated_diameter.meters.estimated_diameter_min.toFixed(2)} m</td>
                         <td>{data.is_potentially_hazardous_asteroid ? 'Sim': 'Não'}</td>
+                        <td>{data.close_approach_data && data.close_approach_data.length > 0
+                            ? parseFloat(data.close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2) + ' km/h'
+                            : 'N/A'}</td>
+                        <td>{data.close_approach_data && data.close_approach_data.length > 0
+                            ? parseFloat(data.close_approach_data[0].miss_distance.kilometers).toFixed(2) + ' km/h'
+                            : 'N/A'}</td>
                     </tr>
                 ))}
                 </tbody>

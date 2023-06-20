@@ -17,7 +17,7 @@ render() {
                     <Nav.Link href="/">Home</Nav.Link>
                     <NavDropdown title="APIs" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/nearbyAsteroids">Asteróides próximos da Terra</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Reservas agendadas</NavDropdown.Item>
+                    <NavDropdown.Item href="/marsRover">Fotos diárias do Mars Rovers</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 </Navbar.Collapse>
