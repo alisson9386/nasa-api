@@ -5,7 +5,7 @@ import Badge from 'react-bootstrap/Badge';
 import { format, parseISO } from 'date-fns';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 class NearbyAsteroids extends Component {
 
@@ -196,15 +196,26 @@ render() {
     <div className="containerData">
         <div className="row">
             <div className="col-sm-5">
-                <h6>Dias</h6>
-                <label><Badge variant="primary">{this.state.countDays}</Badge></label>
+                <h3>Dias</h3>
+                <h4><Badge variant="primary">{this.state.countDays}</Badge></h4>
             </div>
             <div className="col-sm-5">
-                <h6>N° asteróides encontrados</h6>
-                <label><Badge variant="primary">{this.state.countAsteroids}</Badge></label>
+                <h3>N° asteróides encontrados total</h3>
+                <h4><Badge variant="primary">{this.state.countAsteroids}</Badge></h4>
             </div>
-        </div>
-        <br/><br/><br/><br/>
+        </div><br/><br/>
+        <div className="row">
+            <div className="col-sm-6">
+            <BarChart width={600} height={400} data={Object.entries(this.state.countAsteroidsForDay)}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="0" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="1" fill="#8884d8" name="Asteroides" />
+            </BarChart>
+            </div>
+        <div className="col-sm-6">
             <table className="table table-striped table-bordered text-center">
                 <thead>
                     <tr>
@@ -221,7 +232,9 @@ render() {
                 ))}
                 </tbody>
             </table>
-
+        </div>
+        </div>
+    </div>
     <>
     <Modal className='modal modal-lg' show={this.state.showModal} onHide={this.handleClose}>
         <Modal.Header closeButton>
@@ -254,18 +267,6 @@ render() {
         </Modal.Footer>
     </Modal>
     </>
-
-    <LineChart width={600} height={400} data={Object.values(this.state.countAsteroidsForDay)}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey={data => data[0]} stroke="#8884d8" />
-        <Line type="monotone" dataKey={data => data[1]} stroke="#82ca9d" />
-    </LineChart>
-
-    </div>
     </div>
 	)
 }
