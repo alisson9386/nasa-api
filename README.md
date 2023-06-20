@@ -3,7 +3,7 @@ nasa-api
 
 Tecnologias utilizadas:
 * [ReactJS](https://react.dev/)
-* [API NASA](https://api.nasa.gov/) - É necessário obter chave (KEY) de utilização da API no site da Nasa
+* [API NASA](https://api.nasa.gov/) - É necessário obter chave (KEY) de utilização da API no site da Nasa e adicionar na variavel REACT_APP_API_KEY o .env
 
 Componentes Utilizados:
 * [Bootstrap](https://getbootstrap.com/)
