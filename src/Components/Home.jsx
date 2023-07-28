@@ -55,7 +55,7 @@ class Home extends Component {
             <img className="framedImage" src={this.state.urlImageDay} alt={this.state.imageTitle} title={this.state.imageTitle} /><br /><br />
             <a href={this.state.hdImage} target="_blank" rel="noreferrer" className="btn btn-primary btn-sm active" role="button" aria-pressed="true">Fullscreen</a>
           </div>
-          <div className="col-sm-6">
+          <div className="col-sm-6 desc">
             <p className="lead">Descrição</p><br /><br />
             <label>{this.state.imageDescription}</label><br /><br />
           </div>
