@@ -201,11 +201,11 @@ render() {
     <div className="containerData">
         <div className="row">
             <div className="col-sm-5">
-                <h3>Dias</h3>
+                <h3 className="titulos">Dias</h3>
                 <h4><Badge variant="primary">{this.state.countDays}</Badge></h4>
             </div>
             <div className="col-sm-5">
-                <h3>N° asteróides encontrados total</h3>
+                <h3 className="titulos">N° asteróides encontrados total</h3>
                 <h4><Badge variant="primary">{this.state.countAsteroids}</Badge></h4>
             </div>
         </div><br/><br/>
@@ -254,7 +254,7 @@ render() {
                         <th>Diâmetro máximo estimado (em metros)</th>
                         <th>Potencialmente perigoso</th>
                         <th>Velocidade relativa</th>
-                        <th>Distância em KM</th>
+                        <th>Distância da terra em KM</th>
                     </tr>
                 </thead>
                 <tbody>

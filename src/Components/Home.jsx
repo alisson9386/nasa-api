@@ -51,11 +51,11 @@ class Home extends Component {
       <div className="containerHome"><br />
         <div className="row">
           <div className="col-sm-6">
-            <p className="lead">Todos os dias, a Nasa publica uma foto denominada "Picture of the Day"</p>
+            <p className="lead"><b>Todos os dias, a Nasa publica uma foto denominada "Picture of the Day"</b></p>
             <img className="framedImage" src={this.state.urlImageDay} alt={this.state.imageTitle} title={this.state.imageTitle} /><br /><br />
             <a href={this.state.hdImage} target="_blank" rel="noreferrer" className="btn btn-primary btn-sm active" role="button" aria-pressed="true">Fullscreen</a>
           </div>
-          <div className="col-sm-6 desc">
+          <div className="col-sm-6 desc fundoDescricao">
             <p className="lead">Descrição</p><br /><br />
             <label>{this.state.imageDescription}</label><br /><br />
           </div>
